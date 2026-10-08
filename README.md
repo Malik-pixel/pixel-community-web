@@ -80,10 +80,6 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di mesin lokal Anda:
 
 Aplikasi dapat diakses melalui browser pada `http://localhost:8000`.
 
-## 📸 Tampilan Layar (Screenshots)
-
-*(Tambahkan beberapa screenshot halaman utama seperti Dashboard, Katalog Kelas, dan Halaman Video di sini)*
-
 ## 📄 Lisensi
 
 Proyek ini merupakan perangkat lunak sumber terbuka (open-source) yang dilisensikan di bawah [MIT license](https://opensource.org/licenses/MIT).
