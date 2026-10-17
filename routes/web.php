@@ -26,11 +26,11 @@ Route::get('/courses', function () {
     return view('courses');
 })->middleware(['auth', 'verified'])->name('courses');
 
-Route::get('/courses/detail/{slug?}', function ($slug = 'ui-ux') {
-    $courses = [
+$getCoursesList = function () {
+    return [
         'ui-ux' => [
             'title' => 'Fundamental UI/UX Design',
-            'author' => 'Alex Johnson',
+            'author' => 'Sarah Jenkins, Lead Designer',
             'image' => '/images/course_uiux_1790558583074.jpg',
             'badge' => 'Pemula',
             'category' => 'Desain',
@@ -107,19 +107,33 @@ Route::get('/courses/detail/{slug?}', function ($slug = 'ui-ux') {
             'desc' => 'Kuasai teknik optimasi mesin pencari (SEO) dan pemasaran berbayar (SEM) untuk meningkatkan traffic website. Pelajari riset keyword, on-page SEO, dan Google Ads secara komprehensif.',
         ]
     ];
-    
+};
+
+Route::get('/courses/detail/{slug?}', function ($slug = 'ui-ux') use ($getCoursesList) {
+    $courses = $getCoursesList();
     $course = $courses[$slug] ?? $courses['ui-ux'];
 
     return view('course-detail', compact('course', 'slug'));
 })->middleware(['auth', 'verified'])->name('courses.detail');
 
-Route::get('/learn/{slug?}', function ($slug = 'ui-ux') {
-    return view('learn');
+Route::get('/learn/{slug?}', function ($slug = 'ui-ux') use ($getCoursesList) {
+    $courses = $getCoursesList();
+    $course = $courses[$slug] ?? $courses['ui-ux'];
+
+    return view('learn', compact('course', 'slug'));
 })->middleware(['auth', 'verified'])->name('learn');
 
 Route::get('/videos', function () {
     return view('videos');
 })->middleware(['auth', 'verified'])->name('videos');
+
+Route::get('/quizzes', function () {
+    return view('quizzes');
+})->middleware(['auth', 'verified'])->name('quizzes');
+
+Route::get('/quizzes/take/{slug?}', function ($slug = 'ui-ux') {
+    return view('quiz-play', compact('slug'));
+})->middleware(['auth', 'verified'])->name('quizzes.take');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

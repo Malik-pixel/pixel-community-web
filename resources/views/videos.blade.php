@@ -667,7 +667,7 @@
                 <li><a href="{{ url('/dashboard') }}"><i data-lucide="layout-dashboard"></i> Beranda</a></li>
                 <li><a href="{{ route('courses') }}"><i data-lucide="compass"></i> Jelajahi Kelas</a></li>
                 <li class="active"><a href="{{ route('videos') }}"><i data-lucide="book-open"></i> Kelas Saya</a></li>
-                <li><a href="#"><i data-lucide="list-checks"></i> Kuis</a></li>
+                <li><a href="{{ route('quizzes') }}"><i data-lucide="list-checks"></i> Kuis</a></li>
                 <li><a href="#"><i data-lucide="award"></i> Sertifikat</a></li>
                 <li><a href="#"><i data-lucide="clipboard-list"></i> Tugas</a></li>
                 <li><a href="#"><i data-lucide="credit-card"></i> Pembayaran</a></li>
@@ -721,15 +721,11 @@
                             <p class="user-dropdown-email">{{ auth()->user()->email ?? 'pelajar@pixelcommunity.id' }}</p>
                         </div>
                         <div class="dropdown-divider"></div>
-                        <a href="{{ url('/dashboard') }}" class="dropdown-item">
-                            <i data-lucide="layout-dashboard" size="15"></i>
-                            <span>Beranda Dashboard</span>
+                        <a href="{{ route('profile.edit') }}#profile" class="dropdown-item">
+                            <i data-lucide="user" size="15"></i>
+                            <span>Profil Saya</span>
                         </a>
-                        <a href="{{ route('courses') }}" class="dropdown-item">
-                            <i data-lucide="compass" size="15"></i>
-                            <span>Jelajahi Kelas</span>
-                        </a>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('profile.edit') }}#settings" class="dropdown-item">
                             <i data-lucide="settings" size="15"></i>
                             <span>Pengaturan Akun</span>
                         </a>

@@ -615,7 +615,7 @@
             <li><a href="{{ url('/dashboard') }}"><i data-lucide="layout-dashboard"></i> Beranda</a></li>
             <li><a href="{{ route('courses') }}"><i data-lucide="compass"></i> Jelajahi Kelas</a></li>
             <li><a href="{{ route('videos') }}"><i data-lucide="book-open"></i> Kelas Saya</a></li>
-            <li><a href="#"><i data-lucide="list-checks"></i> Kuis</a></li>
+            <li><a href="{{ route('quizzes') }}"><i data-lucide="list-checks"></i> Kuis</a></li>
             <li><a href="#"><i data-lucide="award"></i> Sertifikat</a></li>
             <li><a href="#"><i data-lucide="clipboard-list"></i> Tugas</a></li>
             <li><a href="#"><i data-lucide="credit-card"></i> Pembayaran</a></li>
@@ -633,7 +633,7 @@
                 <div class="top-breadcrumb">
                     <a href="{{ route('videos') }}">Kelas Saya</a>
                     <i data-lucide="chevron-right" size="14"></i>
-                    <span>Video Pembelajaran</span>
+                    <span>{{ $course['title'] ?? 'Video Pembelajaran' }}</span>
                 </div>
             </div>
 
@@ -671,19 +671,11 @@
                             <p class="user-dropdown-email">{{ auth()->user()->email ?? 'pelajar@pixelcommunity.id' }}</p>
                         </div>
                         <div class="dropdown-divider"></div>
-                        <a href="{{ url('/dashboard') }}" class="dropdown-item">
-                            <i data-lucide="layout-dashboard" size="15"></i>
-                            <span>Beranda Dashboard</span>
+                        <a href="{{ route('profile.edit') }}#profile" class="dropdown-item">
+                            <i data-lucide="user" size="15"></i>
+                            <span>Profil Saya</span>
                         </a>
-                        <a href="{{ route('courses') }}" class="dropdown-item">
-                            <i data-lucide="compass" size="15"></i>
-                            <span>Jelajahi Kelas</span>
-                        </a>
-                        <a href="{{ route('videos') }}" class="dropdown-item">
-                            <i data-lucide="book-open" size="15"></i>
-                            <span>Kelas Saya</span>
-                        </a>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('profile.edit') }}#settings" class="dropdown-item">
                             <i data-lucide="settings" size="15"></i>
                             <span>Pengaturan Akun</span>
                         </a>
@@ -702,24 +694,24 @@
 
         <!-- Content -->
         <div class="content">
-            <h2 class="page-title">Fundamental UI/UX Design</h2>
-            <p class="page-subtitle">Pelajaran 4 dari 7 â€¢ Menonton: Memahami User Persona</p>
+            <h2 class="page-title">{{ $course['title'] ?? 'Fundamental UI/UX Design' }}</h2>
+            <p class="page-subtitle">Pelajaran 4 dari 7 • Menonton: Memahami User Persona</p>
 
             <div class="video-layout">
 
                 <!-- Left: Video Player -->
                 <div class="video-player-card">
                     <div class="video-thumbnail" onclick="playVideo()">
-                        <img src="/images/course_uiux_1790558583074.jpg" alt="Understanding User Persona" id="videoThumb">
+                        <img src="{{ $course['image'] ?? '/images/course_uiux_1790558583074.jpg' }}" alt="{{ $course['title'] ?? 'Video Thumbnail' }}" id="videoThumb">
                         <div class="play-btn" id="playBtn">
                             <i data-lucide="play" size="28"></i>
                         </div>
                         <div class="video-overlay">
-                            <span class="video-category">UX Research</span>
+                            <span class="video-category">{{ $course['category'] ?? 'Desain' }}</span>
                             <h2 class="video-title-overlay">Memahami User Persona</h2>
                             <div class="video-author-overlay">
                                 <i data-lucide="user" size="14"></i>
-                                Sarah Jenkins
+                                {{ $course['author'] ?? 'Sarah Jenkins' }}
                             </div>
                         </div>
                         <div class="video-duration">

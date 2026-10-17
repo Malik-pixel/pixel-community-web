@@ -657,10 +657,15 @@
             border-radius: 10px;
             border: 1px solid var(--border-color);
             background-color: transparent;
+            color: var(--text-dark);
+            text-decoration: none;
             font-weight: 600;
             font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-outline:hover {
@@ -1304,6 +1309,8 @@
             border-radius: 10px;
             border: 1px solid var(--border-color);
             background-color: transparent;
+            color: var(--text-dark);
+            text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
@@ -1316,6 +1323,7 @@
         
         .btn-outline-dark:hover {
             background-color: var(--bg-body);
+            color: var(--text-dark);
         }
 
         .up-next-card {
@@ -1428,7 +1436,7 @@
                 <li class="active"><a href="{{ url('/dashboard') }}"><i data-lucide="layout-dashboard"></i> Beranda</a></li>
                 <li><a href="{{ route('courses') }}"><i data-lucide="compass"></i> Jelajahi Kelas</a></li>
                 <li><a href="{{ route('videos') }}"><i data-lucide="book-open"></i> Kelas Saya</a></li>
-                <li><a href="#"><i data-lucide="list-checks"></i> Kuis</a></li>
+                <li><a href="{{ route('quizzes') }}"><i data-lucide="list-checks"></i> Kuis</a></li>
                 <li><a href="#"><i data-lucide="award"></i> Sertifikat</a></li>
                 <li><a href="#"><i data-lucide="clipboard-list"></i> Tugas</a></li>
                 <li><a href="#"><i data-lucide="credit-card"></i> Pembayaran</a></li>
@@ -1481,15 +1489,11 @@
                                 <p class="user-dropdown-email">{{ auth()->user()->email ?? 'pelajar@pixelcommunity.id' }}</p>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
+                            <a href="{{ route('profile.edit') }}#profile" class="dropdown-item">
                                 <i data-lucide="user" size="15"></i>
                                 <span>Profil Saya</span>
                             </a>
-                            <a href="{{ route('courses') }}" class="dropdown-item">
-                                <i data-lucide="compass" size="15"></i>
-                                <span>Jelajahi Kelas</span>
-                            </a>
-                            <a href="#" class="dropdown-item">
+                            <a href="{{ route('profile.edit') }}#settings" class="dropdown-item">
                                 <i data-lucide="settings" size="15"></i>
                                 <span>Pengaturan Akun</span>
                             </a>
@@ -1554,12 +1558,12 @@
                     <div class="learning-section">
                         <div class="section-header">
                             <h3>Kelas Saya</h3>
-                            <a href="#" class="view-all">Lihat Semua</a>
+                            <a href="{{ route('videos') }}" class="view-all">Lihat Semua</a>
                         </div>
                         
                         <div class="learning-list">
-                            <!-- Item 1 -->
-                            <div class="learning-item">
+                            <!-- Item 1: UI/UX -->
+                            <div class="learning-item" onclick="window.location.href='{{ route('learn', ['slug' => 'ui-ux']) }}'">
                                 <img src="/images/course_uiux_1790558583074.jpg" alt="UI/UX" class="course-thumb">
                                 <div class="course-info">
                                     <h4>UI/UX Design Fundamental</h4>
@@ -1569,10 +1573,10 @@
                                         <span class="progress-text">75%</span>
                                     </div>
                                 </div>
-                                <button class="btn-outline">Lanjutkan</button>
+                                <a href="{{ route('learn', ['slug' => 'ui-ux']) }}" class="btn-outline" onclick="event.stopPropagation();">Lanjutkan</a>
                             </div>
-                            <!-- Item 2 -->
-                            <div class="learning-item">
+                            <!-- Item 2: React -->
+                            <div class="learning-item" onclick="window.location.href='{{ route('learn', ['slug' => 'react']) }}'">
                                 <img src="/images/course_react_1790558572624.jpg" alt="Web Dev" class="course-thumb">
                                 <div class="course-info">
                                     <h4>Web Development Bootcamp</h4>
@@ -1582,21 +1586,21 @@
                                         <span class="progress-text">40%</span>
                                     </div>
                                 </div>
-                                <button class="btn-outline">Lanjutkan</button>
+                                <a href="{{ route('learn', ['slug' => 'react']) }}" class="btn-outline" onclick="event.stopPropagation();">Lanjutkan</a>
                             </div>
                         </div>
                         
                         <div class="quiz-wrapper" style="margin-top: 24px;">
-                            <div class="quiz-card">
+                            <div class="quiz-card" onclick="window.location.href='{{ route('quizzes.take', ['slug' => 'ui-ux']) }}'" style="cursor: pointer;">
                                 <div class="quiz-icon"><i data-lucide="list-todo" size="20"></i></div>
                                 <div class="quiz-content">
                                     <h3>Kuis UI/UX</h3>
-                                    <p>10 Pertanyaan â€¢ 20 Menit</p>
+                                    <p>10 Pertanyaan • 20 Menit</p>
                                 </div>
-                                <button class="btn-outline-dark">Mulai Kuis</button>
+                                <a href="{{ route('quizzes.take', ['slug' => 'ui-ux']) }}" class="btn-outline-dark" onclick="event.stopPropagation();">Mulai Kuis</a>
                             </div>
                             
-                            <div class="up-next-card">
+                            <div class="up-next-card" onclick="window.location.href='{{ route('learn', ['slug' => 'ui-ux']) }}'" style="cursor: pointer;">
                                 <div class="next-header">
                                     <div class="next-icon"><i data-lucide="play" size="20"></i></div>
                                     <span class="badge-gray">Tersisa 18:32</span>
