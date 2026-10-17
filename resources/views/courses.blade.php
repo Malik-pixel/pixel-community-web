@@ -141,15 +141,22 @@
             min-height: 100vh;
         }
 
-        /* â”€â”€ Header â”€â”€ */
+        /* ── Header Layout ── */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 48px;
+            padding: 16px 40px;
             background-color: var(--bg-white);
             border-bottom: 1px solid var(--border-color);
-            position: sticky; top: 0; z-index: 40;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
         }
 
         .top-breadcrumb {
@@ -159,6 +166,17 @@
             font-size: 0.9rem;
             color: var(--text-muted);
             font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .top-breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        .top-breadcrumb a:hover {
+            color: #2563eb;
         }
 
         .top-breadcrumb span {
@@ -166,63 +184,250 @@
             font-weight: 700;
         }
 
-        .header-actions { display: flex; align-items: center; gap: 16px; }
-
-        .search-box {
-            display: flex; align-items: center;
-            background-color: var(--bg-body);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 0 16px;
-            width: 300px; height: 42px;
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
-        .search-box i { color: var(--text-muted); flex-shrink: 0; }
-
-        .search-box input {
-            flex: 1; border: none; background: transparent;
-            padding: 0 0 0 10px;
-            font-family: var(--font-main);
-            color: var(--text-dark);
-            outline: none; font-size: 0.875rem; height: 100%;
+        .streak-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #fff7ed, #ffedd5);
+            color: #c2410c;
+            padding: 0 14px;
+            height: 40px;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.825rem;
+            border: 1px solid #fed7aa;
+            box-shadow: 0 1px 2px rgba(234, 88, 12, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+            user-select: none;
+            white-space: nowrap;
         }
 
-        .search-box input::placeholder { color: #94a3b8; }
+        .streak-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(234, 88, 12, 0.12);
+        }
+
+        .streak-badge i {
+            color: #ea580c;
+            fill: #ea580c;
+        }
 
         .icon-btn {
-            background-color: var(--bg-body);
+            background-color: var(--bg-white);
             border: 1px solid var(--border-color);
-            width: 42px; height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 12px;
+            color: #475569;
             cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .icon-btn:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+            color: #0f172a;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px -1px rgba(0,0,0,0.05);
+        }
+        
+        .icon-btn.has-dot::after {
+            content: '';
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            width: 8px;
+            height: 8px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 24px;
+            background-color: var(--border-color);
+            margin: 0 2px;
+        }
+
+        /* User Profile & Interactive Dropdown */
+        .user-menu-wrapper {
             position: relative;
         }
 
-        .icon-btn.has-dot::after {
-            content: '';
-            position: absolute; top: 8px; right: 8px;
-            width: 7px; height: 7px;
-            background-color: var(--red); border-radius: 50%;
-            border: 2px solid var(--bg-body);
+        .user-profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 10px 4px 6px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            border: 1px solid transparent;
         }
 
-        .user-profile {
-            display: flex; align-items: center; gap: 10px;
-            padding-left: 20px;
-            border-left: 1px solid var(--border-color);
+        .user-profile-btn:hover,
+        .user-profile-btn.active {
+            background-color: #f8fafc;
+            border-color: #e2e8f0;
         }
 
-        .user-profile img {
-            width: 38px; height: 38px; border-radius: 50%;
+        .avatar-wrapper {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--bg-white);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
         }
 
-        .user-info { display: flex; flex-direction: column; }
-        .user-info .name { font-weight: 700; font-size: 0.875rem; }
-        .user-info .role { color: var(--text-muted); font-size: 0.75rem; font-weight: 500; }
+        .avatar-status-dot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background-color: #10b981;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .user-info .name {
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: #0f172a;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .user-info .role {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .menu-chevron {
+            color: #94a3b8;
+            transition: transform 0.2s ease;
+            margin-left: 2px;
+        }
+
+        .user-profile-btn.active .menu-chevron {
+            transform: rotate(180deg);
+            color: #2563eb;
+        }
+
+        /* Profile Dropdown Menu Card */
+        .user-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 230px;
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.85);
+            border-radius: 16px;
+            box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(15, 23, 42, 0.04);
+            padding: 8px;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .user-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .user-dropdown-header {
+            padding: 10px 12px;
+        }
+
+        .user-dropdown-name {
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-dropdown-email {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background-color: #f1f5f9;
+            margin: 6px 0;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.825rem;
+            font-weight: 500;
+            color: #334155;
+            transition: all 0.15s ease;
+            text-decoration: none;
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8fafc;
+            color: #2563eb;
+        }
+
+        .dropdown-item.dropdown-logout-btn {
+            color: #ef4444;
+        }
+
+        .dropdown-item.dropdown-logout-btn:hover {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
 
         /* â”€â”€ Page Content â”€â”€ */
         .content { padding: 40px 48px; }
@@ -597,6 +802,7 @@
         @media (max-width: 1024px) {
             .sidebar { display: none; }
             .main-content { margin-left: 0; }
+            .header { padding: 14px 24px; }
             .courses-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -630,21 +836,66 @@
 
         <!-- Header -->
         <header class="header">
-            <div class="top-breadcrumb">
-                Pixel Community <i data-lucide="chevron-right" size="14"></i> <span>Jelajahi Kelas</span>
+            <div class="header-left">
+                <div class="top-breadcrumb">
+                    Pixel Community <i data-lucide="chevron-right" size="14"></i> <span>Jelajahi Kelas</span>
+                </div>
             </div>
+
             <div class="header-actions">
-                <div style="display:flex; align-items:center; gap:6px; background-color:#fff7ed; color:#ea580c; padding:6px 12px; border-radius:20px; font-weight:700; font-size:0.85rem; border:1px solid #ffedd5;">
-                    <i data-lucide="flame" size="16" style="fill:#ea580c; color:#ea580c;"></i>
+                <!-- Streak Indicator -->
+                <div class="streak-badge" title="Streak belajar aktif 5 hari berturut-turut!">
+                    <i data-lucide="flame" size="16"></i>
                     <span>5 Hari</span>
                 </div>
-                <button class="icon-btn"><i data-lucide="message-circle" size="18"></i></button>
-                <button class="icon-btn has-dot"><i data-lucide="bell" size="18"></i></button>
-                <div class="user-profile">
-                    <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'User') }}&background=random" alt="User">
-                    <div class="user-info">
-                        <span class="name">{{ auth()->user()->name ?? 'Pengguna' }}</span>
-                        <span class="role">Pelajar</span>
+
+                <!-- Message & Notification -->
+                <button class="icon-btn" title="Pesan"><i data-lucide="message-circle" size="18"></i></button>
+                <button class="icon-btn has-dot" title="Notifikasi"><i data-lucide="bell" size="18"></i></button>
+
+                <div class="header-divider"></div>
+
+                <!-- User Profile & Dropdown -->
+                <div class="user-menu-wrapper" id="userMenuWrapper">
+                    <div class="user-profile-btn" id="userProfileBtn" role="button" tabindex="0">
+                        <div class="avatar-wrapper">
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'User') }}&background=2563eb&color=ffffff&bold=true" alt="{{ auth()->user()->name ?? 'User' }}" class="avatar-img">
+                            <span class="avatar-status-dot"></span>
+                        </div>
+                        <div class="user-info">
+                            <span class="name">{{ auth()->user()->name ?? 'Pengguna' }}</span>
+                            <span class="role">Pelajar</span>
+                        </div>
+                        <i data-lucide="chevron-down" size="14" class="menu-chevron" id="userChevron"></i>
+                    </div>
+
+                    <!-- Dropdown Menu -->
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <div class="user-dropdown-header">
+                            <p class="user-dropdown-name">{{ auth()->user()->name ?? 'Pengguna' }}</p>
+                            <p class="user-dropdown-email">{{ auth()->user()->email ?? 'pelajar@pixelcommunity.id' }}</p>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ url('/dashboard') }}" class="dropdown-item">
+                            <i data-lucide="layout-dashboard" size="15"></i>
+                            <span>Beranda Dashboard</span>
+                        </a>
+                        <a href="{{ route('videos') }}" class="dropdown-item">
+                            <i data-lucide="book-open" size="15"></i>
+                            <span>Kelas Saya</span>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i data-lucide="settings" size="15"></i>
+                            <span>Pengaturan Akun</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
+                            @csrf
+                            <button type="submit" class="dropdown-item dropdown-logout-btn">
+                                <i data-lucide="log-out" size="15"></i>
+                                <span>Keluar dari Akun</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -976,6 +1227,25 @@
             const isCategoryMatch = category === 'semua' || card.dataset.category === category;
             const isSortMatch = type === 'gratis' ? parseInt(card.dataset.price) === 0 : true;
             card.style.display = (isCategoryMatch && isSortMatch) ? 'flex' : 'none';
+        });
+    }
+
+    // User Profile Dropdown Toggle
+    const userProfileBtn = document.getElementById('userProfileBtn');
+    const userDropdownMenu = document.getElementById('userDropdownMenu');
+    if (userProfileBtn && userDropdownMenu) {
+        userProfileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = userDropdownMenu.classList.contains('show');
+            userProfileBtn.classList.toggle('active', !isOpen);
+            userDropdownMenu.classList.toggle('show', !isOpen);
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!userProfileBtn.contains(e.target) && !userDropdownMenu.contains(e.target)) {
+                userProfileBtn.classList.remove('active');
+                userDropdownMenu.classList.remove('show');
+            }
         });
     }
 </script>
