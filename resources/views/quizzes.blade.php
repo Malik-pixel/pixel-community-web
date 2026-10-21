@@ -1242,26 +1242,26 @@
             <div class="content">
                 
                 <div class="page-header-wrap">
-                    <h1 class="page-title">My Quiz</h1>
+                    <h1 class="page-title">Kuis Saya</h1>
                     <p class="page-subtitle">Uji pemahamanmu dari materi yang telah dipelajari.</p>
                 </div>
 
                 <!-- Filter Pills -->
                 <div class="filter-pills-row">
-                    <button type="button" class="filter-pill active" data-filter="all" onclick="filterQuizzes('all', this)">All</button>
-                    <button type="button" class="filter-pill" data-filter="upcoming" onclick="filterQuizzes('upcoming', this)">Upcoming</button>
-                    <button type="button" class="filter-pill" data-filter="completed" onclick="filterQuizzes('completed', this)">Completed</button>
-                    <button type="button" class="filter-pill" data-filter="in-progress" onclick="filterQuizzes('in-progress', this)">In Progress</button>
+                    <button type="button" class="filter-pill active" data-filter="all" onclick="filterQuizzes('all', this)">Semua</button>
+                    <button type="button" class="filter-pill" data-filter="upcoming" onclick="filterQuizzes('upcoming', this)">Belum Mulai</button>
+                    <button type="button" class="filter-pill" data-filter="completed" onclick="filterQuizzes('completed', this)">Selesai</button>
+                    <button type="button" class="filter-pill" data-filter="in-progress" onclick="filterQuizzes('in-progress', this)">Sedang Berjalan</button>
                 </div>
 
                 <!-- Quizzes Grid -->
                 <div class="quizzes-grid" id="quizzesGrid">
                     
                     <!-- Card 1: Upcoming (UI/UX Design Quiz) -->
-                    <div class="quiz-card" data-category="upcoming">
+                    <div class="quiz-card" data-category="upcoming" data-quiz-slug="ui-ux" data-total-questions="10" data-duration="20 Menit" data-quiz-title="UI/UX Design Quiz" data-menu-id="menu-uiux">
                         <div>
                             <div class="quiz-card-top" style="position: relative;">
-                                <span class="quiz-badge upcoming">UPCOMING</span>
+                                <span class="quiz-badge upcoming">BELUM MULAI</span>
                                 <button type="button" class="quiz-card-menu-btn" title="Opsi" onclick="toggleCardMenu(event, 'menu-uiux')"><i data-lucide="more-horizontal" size="18"></i></button>
                                 <div class="card-dropdown-menu" id="menu-uiux">
                                     <a href="{{ route('quizzes.take', ['slug' => 'ui-ux']) }}" class="card-dropdown-item"><i data-lucide="play" size="14"></i> Kerjakan Kuis</a>
@@ -1270,27 +1270,27 @@
                                 </div>
                             </div>
                             <h2 class="quiz-card-title">UI/UX Design Quiz</h2>
-                            <p class="quiz-card-desc">Test your knowledge on user research and wireframing fundamentals.</p>
+                            <p class="quiz-card-desc">Uji pemahamanmu tentang riset pengguna dan dasar-dasar wireframing.</p>
                         </div>
-                        <div>
+                        <div class="quiz-card-bottom-wrap">
                             <div class="quiz-meta-row">
-                                <span class="quiz-meta-item"><i data-lucide="help-circle" size="15"></i> 10 Questions</span>
-                                <span class="quiz-meta-item"><i data-lucide="clock" size="15"></i> 20 Mins</span>
+                                <span class="quiz-meta-item"><i data-lucide="help-circle" size="15"></i> 10 Soal</span>
+                                <span class="quiz-meta-item"><i data-lucide="clock" size="15"></i> 20 Menit</span>
                             </div>
                             <div class="quiz-extra-info">
-                                <i data-lucide="rotate-ccw" size="13"></i> Attempt 0/1
+                                <i data-lucide="rotate-ccw" size="13"></i> Percobaan 0/1
                             </div>
                             <button type="button" class="quiz-btn quiz-btn-dark" onclick="window.location.href='{{ route('quizzes.take', ['slug' => 'ui-ux']) }}'">
-                                Start Quiz
+                                Mulai Kuis
                             </button>
                         </div>
                     </div>
 
                     <!-- Card 2: Completed (HTML/CSS Basics) -->
-                    <div class="quiz-card" data-category="completed">
+                    <div class="quiz-card" data-category="completed" data-quiz-slug="htmlcss" data-total-questions="15" data-duration="30 Menit" data-quiz-title="HTML/CSS Basics" data-menu-id="menu-htmlcss">
                         <div>
                             <div class="quiz-card-top" style="position: relative;">
-                                <span class="quiz-badge completed">COMPLETED</span>
+                                <span class="quiz-badge completed">SELESAI</span>
                                 <div style="display:flex; align-items:center; gap:8px;">
                                     <span class="quiz-score-badge">85%</span>
                                     <button type="button" class="quiz-card-menu-btn" title="Opsi" onclick="toggleCardMenu(event, 'menu-htmlcss')"><i data-lucide="more-horizontal" size="18"></i></button>
@@ -1301,38 +1301,38 @@
                                 </div>
                             </div>
                             <h2 class="quiz-card-title">HTML/CSS Basics</h2>
-                            <p class="quiz-card-desc">Foundational web layout and styling concepts.</p>
+                            <p class="quiz-card-desc">Konsep dasar tata letak, styling, dan responsivitas halaman web.</p>
                         </div>
-                        <div>
+                        <div class="quiz-card-bottom-wrap">
                             <div class="quiz-meta-row" style="margin-bottom: 22px;">
-                                <span class="quiz-meta-item"><i data-lucide="help-circle" size="15"></i> 15 Questions</span>
-                                <span class="quiz-meta-item"><i data-lucide="clock" size="15"></i> 30 Mins</span>
+                                <span class="quiz-meta-item"><i data-lucide="help-circle" size="15"></i> 15 Soal</span>
+                                <span class="quiz-meta-item"><i data-lucide="clock" size="15"></i> 30 Menit</span>
                             </div>
                             <button type="button" class="quiz-btn quiz-btn-outline" onclick="openResultModal('HTML/CSS Basics', '85%', '13 Benar dari 15 Soal')">
-                                View Results
+                                Lihat Hasil
                             </button>
                         </div>
                     </div>
 
                     <!-- Card 3: In Progress (JavaScript ES6+) -->
-                    <div class="quiz-card" data-category="in-progress">
+                    <div class="quiz-card" data-category="in-progress" data-quiz-slug="js" data-total-questions="20" data-duration="25 Menit" data-quiz-title="JavaScript ES6+" data-menu-id="menu-js">
                         <div>
                             <div class="quiz-card-top" style="position: relative;">
-                                <span class="quiz-badge in-progress">IN PROGRESS</span>
+                                <span class="quiz-badge in-progress">SEDANG BERJALAN</span>
                                 <button type="button" class="quiz-card-menu-btn" title="Opsi" onclick="toggleCardMenu(event, 'menu-js')"><i data-lucide="more-horizontal" size="18"></i></button>
                                 <div class="card-dropdown-menu" id="menu-js">
                                     <a href="{{ route('quizzes.take', ['slug' => 'js']) }}" class="card-dropdown-item"><i data-lucide="play" size="14"></i> Lanjutkan Kuis</a>
                                     <button type="button" class="card-dropdown-item" onclick="copyQuizLink('{{ route('quizzes.take', ['slug' => 'js']) }}')"><i data-lucide="share-2" size="14"></i> Bagikan Link</button>
-                                    <button type="button" class="card-dropdown-item" onclick="showQuizInfo('JavaScript ES6+', '20 Soal • Progress: 5/20')"><i data-lucide="info" size="14"></i> Detail Modul</button>
+                                    <button type="button" class="card-dropdown-item" onclick="showQuizInfo('JavaScript ES6+', '20 Soal • Progres: 5/20')"><i data-lucide="info" size="14"></i> Detail Modul</button>
                                 </div>
                             </div>
                             <h2 class="quiz-card-title">JavaScript ES6+</h2>
-                            <p class="quiz-card-desc">Modern JavaScript syntax and features evaluation.</p>
+                            <p class="quiz-card-desc">Evaluasi sintaks modern dan fitur-fitur baru JavaScript.</p>
                         </div>
-                        <div>
+                        <div class="quiz-card-bottom-wrap">
                             <div class="quiz-progress-wrap">
                                 <div class="quiz-progress-labels">
-                                    <span>Progress</span>
+                                    <span>Progres</span>
                                     <span style="font-weight:700; color:var(--text-dark);">5/20</span>
                                 </div>
                                 <div class="quiz-progress-track">
@@ -1340,16 +1340,16 @@
                                 </div>
                             </div>
                             <button type="button" class="quiz-btn quiz-btn-accent" onclick="window.location.href='{{ route('quizzes.take', ['slug' => 'js']) }}'">
-                                Resume Quiz
+                                Lanjutkan Kuis
                             </button>
                         </div>
                     </div>
 
                     <!-- Card 4: Upcoming (React & State Management) -->
-                    <div class="quiz-card" data-category="upcoming">
+                    <div class="quiz-card" data-category="upcoming" data-quiz-slug="react" data-total-questions="12" data-duration="25 Menit" data-quiz-title="React.js & Hooks" data-menu-id="menu-react">
                         <div>
                             <div class="quiz-card-top" style="position: relative;">
-                                <span class="quiz-badge upcoming">UPCOMING</span>
+                                <span class="quiz-badge upcoming">BELUM MULAI</span>
                                 <button type="button" class="quiz-card-menu-btn" title="Opsi" onclick="toggleCardMenu(event, 'menu-react')"><i data-lucide="more-horizontal" size="18"></i></button>
                                 <div class="card-dropdown-menu" id="menu-react">
                                     <a href="{{ route('quizzes.take', ['slug' => 'react']) }}" class="card-dropdown-item"><i data-lucide="play" size="14"></i> Kerjakan Kuis</a>
@@ -1358,27 +1358,27 @@
                                 </div>
                             </div>
                             <h2 class="quiz-card-title">React.js & Hooks</h2>
-                            <p class="quiz-card-desc">Components lifecycle, custom hooks, and modern frontend state.</p>
+                            <p class="quiz-card-desc">Siklus hidup komponen, custom hooks, dan state frontend modern.</p>
                         </div>
-                        <div>
+                        <div class="quiz-card-bottom-wrap">
                             <div class="quiz-meta-row">
-                                <span class="quiz-meta-item"><i data-lucide="help-circle" size="15"></i> 12 Questions</span>
-                                <span class="quiz-meta-item"><i data-lucide="clock" size="15"></i> 25 Mins</span>
+                                <span class="quiz-meta-item"><i data-lucide="help-circle" size="15"></i> 12 Soal</span>
+                                <span class="quiz-meta-item"><i data-lucide="clock" size="15"></i> 25 Menit</span>
                             </div>
                             <div class="quiz-extra-info">
-                                <i data-lucide="rotate-ccw" size="13"></i> Attempt 0/1
+                                <i data-lucide="rotate-ccw" size="13"></i> Percobaan 0/1
                             </div>
                             <button type="button" class="quiz-btn quiz-btn-dark" onclick="window.location.href='{{ route('quizzes.take', ['slug' => 'react']) }}'">
-                                Start Quiz
+                                Mulai Kuis
                             </button>
                         </div>
                     </div>
 
                     <!-- Card 5: Completed (UI Typography & Color) -->
-                    <div class="quiz-card" data-category="completed">
+                    <div class="quiz-card" data-category="completed" data-quiz-slug="typo" data-total-questions="10" data-duration="15 Menit" data-quiz-title="Typography & Color Theory" data-menu-id="menu-typo">
                         <div>
                             <div class="quiz-card-top" style="position: relative;">
-                                <span class="quiz-badge completed">COMPLETED</span>
+                                <span class="quiz-badge completed">SELESAI</span>
                                 <div style="display:flex; align-items:center; gap:8px;">
                                     <span class="quiz-score-badge">92%</span>
                                     <button type="button" class="quiz-card-menu-btn" title="Opsi" onclick="toggleCardMenu(event, 'menu-typo')"><i data-lucide="more-horizontal" size="18"></i></button>
@@ -1389,38 +1389,38 @@
                                 </div>
                             </div>
                             <h2 class="quiz-card-title">Typography & Color Theory</h2>
-                            <p class="quiz-card-desc">Color harmony, WCAG contrast accessibility, and typography scale.</p>
+                            <p class="quiz-card-desc">Harmoni warna, aksesibilitas kontras WCAG, dan skala tipografi.</p>
                         </div>
-                        <div>
+                        <div class="quiz-card-bottom-wrap">
                             <div class="quiz-meta-row" style="margin-bottom: 22px;">
-                                <span class="quiz-meta-item"><i data-lucide="help-circle" size="15"></i> 10 Questions</span>
-                                <span class="quiz-meta-item"><i data-lucide="clock" size="15"></i> 15 Mins</span>
+                                <span class="quiz-meta-item"><i data-lucide="help-circle" size="15"></i> 10 Soal</span>
+                                <span class="quiz-meta-item"><i data-lucide="clock" size="15"></i> 15 Menit</span>
                             </div>
                             <button type="button" class="quiz-btn quiz-btn-outline" onclick="openResultModal('Typography & Color Theory', '92%', '11 Benar dari 12 Soal')">
-                                View Results
+                                Lihat Hasil
                             </button>
                         </div>
                     </div>
 
                     <!-- Card 6: In Progress (Backend API Standards) -->
-                    <div class="quiz-card" data-category="in-progress">
+                    <div class="quiz-card" data-category="in-progress" data-quiz-slug="backend" data-total-questions="15" data-duration="30 Menit" data-quiz-title="Backend API & Database" data-menu-id="menu-backend">
                         <div>
                             <div class="quiz-card-top" style="position: relative;">
-                                <span class="quiz-badge in-progress">IN PROGRESS</span>
+                                <span class="quiz-badge in-progress">SEDANG BERJALAN</span>
                                 <button type="button" class="quiz-card-menu-btn" title="Opsi" onclick="toggleCardMenu(event, 'menu-backend')"><i data-lucide="more-horizontal" size="18"></i></button>
                                 <div class="card-dropdown-menu" id="menu-backend">
                                     <a href="{{ route('quizzes.take', ['slug' => 'backend']) }}" class="card-dropdown-item"><i data-lucide="play" size="14"></i> Lanjutkan Kuis</a>
                                     <button type="button" class="card-dropdown-item" onclick="copyQuizLink('{{ route('quizzes.take', ['slug' => 'backend']) }}')"><i data-lucide="share-2" size="14"></i> Bagikan Link</button>
-                                    <button type="button" class="card-dropdown-item" onclick="showQuizInfo('Backend API & Database', '15 Soal • Progress: 8/15')"><i data-lucide="info" size="14"></i> Detail Modul</button>
+                                    <button type="button" class="card-dropdown-item" onclick="showQuizInfo('Backend API & Database', '15 Soal • Progres: 8/15')"><i data-lucide="info" size="14"></i> Detail Modul</button>
                                 </div>
                             </div>
                             <h2 class="quiz-card-title">Backend API & Database</h2>
-                            <p class="quiz-card-desc">RESTful API conventions, endpoint authentication, and database schemas.</p>
+                            <p class="quiz-card-desc">Konvensi RESTful API, autentikasi endpoint, dan skema database.</p>
                         </div>
-                        <div>
+                        <div class="quiz-card-bottom-wrap">
                             <div class="quiz-progress-wrap">
                                 <div class="quiz-progress-labels">
-                                    <span>Progress</span>
+                                    <span>Progres</span>
                                     <span style="font-weight:700; color:var(--text-dark);">8/15</span>
                                 </div>
                                 <div class="quiz-progress-track">
@@ -1428,7 +1428,7 @@
                                 </div>
                             </div>
                             <button type="button" class="quiz-btn quiz-btn-accent" onclick="window.location.href='{{ route('quizzes.take', ['slug' => 'backend']) }}'">
-                                Resume Quiz
+                                Lanjutkan Kuis
                             </button>
                         </div>
                     </div>
@@ -1544,6 +1544,123 @@
 
     <script>
         lucide.createIcons();
+
+        // ── LocalStorage Sync for Quiz Progress & Resume State ──
+        function syncQuizCardsWithStorage() {
+            const cards = document.querySelectorAll('.quiz-card[data-quiz-slug]');
+            cards.forEach(card => {
+                const slug = card.dataset.quizSlug;
+                const total = parseInt(card.dataset.totalQuestions || '10', 10);
+                const duration = card.dataset.duration || '20 Mins';
+                const title = card.dataset.quizTitle || 'Quiz';
+                const menuId = card.dataset.menuId;
+                const takeUrl = `/quizzes/take/${slug}`;
+
+                try {
+                    const completedJson = localStorage.getItem('pixel_quiz_completed_' + slug);
+                    const draftJson = localStorage.getItem('pixel_quiz_draft_' + slug);
+
+                    if (draftJson) {
+                        const draft = JSON.parse(draftJson);
+                        // Quiz is started and in progress
+                        card.dataset.category = 'in-progress';
+
+                        // 1. Badge in top header
+                        const topDiv = card.querySelector('.quiz-card-top');
+                        if (topDiv) {
+                            let badge = topDiv.querySelector('.quiz-badge');
+                            if (badge) {
+                                badge.className = 'quiz-badge in-progress';
+                                badge.textContent = 'SEDANG BERJALAN';
+                            }
+                            const scoreBadge = topDiv.querySelector('.quiz-score-badge');
+                            if (scoreBadge) scoreBadge.remove();
+                        }
+
+                        // 2. Dropdown menu update
+                        if (menuId) {
+                            const playLink = document.querySelector(`#${menuId} a.card-dropdown-item`);
+                            if (playLink) {
+                                playLink.innerHTML = `<i data-lucide="play" size="14"></i> Lanjutkan Kuis`;
+                            }
+                        }
+
+                        // 3. Bottom container update
+                        const userAnswers = draft.userAnswers || {};
+                        const answeredCount = Object.keys(userAnswers).length;
+                        const totalQ = draft.totalQuestions || total;
+                        const percent = Math.min(100, Math.max(5, Math.round((answeredCount / totalQ) * 100)));
+
+                        const bottomWrap = card.querySelector('.quiz-card-bottom-wrap');
+                        if (bottomWrap) {
+                            bottomWrap.innerHTML = `
+                                <div class="quiz-progress-wrap">
+                                    <div class="quiz-progress-labels">
+                                        <span>Progres</span>
+                                        <span style="font-weight:700; color:var(--text-dark);">${answeredCount}/${totalQ}</span>
+                                    </div>
+                                    <div class="quiz-progress-track">
+                                        <div class="quiz-progress-fill" style="width: ${percent}%;"></div>
+                                    </div>
+                                </div>
+                                <button type="button" class="quiz-btn quiz-btn-accent" onclick="window.location.href='${takeUrl}'">
+                                    Lanjutkan Kuis
+                                </button>
+                            `;
+                        }
+                    } else if (completedJson) {
+                        const comp = JSON.parse(completedJson);
+                        card.dataset.category = 'completed';
+
+                        const topDiv = card.querySelector('.quiz-card-top');
+                        if (topDiv) {
+                            let badge = topDiv.querySelector('.quiz-badge');
+                            if (badge) {
+                                badge.className = 'quiz-badge completed';
+                                badge.textContent = 'SELESAI';
+                            }
+                            let scoreBadge = topDiv.querySelector('.quiz-score-badge');
+                            if (!scoreBadge) {
+                                scoreBadge = document.createElement('span');
+                                scoreBadge.className = 'quiz-score-badge';
+                                const menuBtn = topDiv.querySelector('.quiz-card-menu-btn');
+                                if (menuBtn) {
+                                    const wrap = document.createElement('div');
+                                    wrap.style.cssText = 'display:flex; align-items:center; gap:8px;';
+                                    menuBtn.parentNode.insertBefore(wrap, menuBtn);
+                                    wrap.appendChild(scoreBadge);
+                                    wrap.appendChild(menuBtn);
+                                }
+                            }
+                            if (scoreBadge) scoreBadge.textContent = `${comp.score}%`;
+                        }
+
+                        const bottomWrap = card.querySelector('.quiz-card-bottom-wrap');
+                        if (bottomWrap) {
+                            bottomWrap.innerHTML = `
+                                <div class="quiz-meta-row" style="margin-bottom: 22px;">
+                                    <span class="quiz-meta-item"><i data-lucide="help-circle" size="15"></i> ${total} Soal</span>
+                                    <span class="quiz-meta-item"><i data-lucide="clock" size="15"></i> ${duration}</span>
+                                </div>
+                                <button type="button" class="quiz-btn quiz-btn-outline" onclick="openResultModal('${title}', '${comp.score}%', '${comp.correctCount || 0} Benar dari ${total} Soal')">
+                                    Lihat Hasil
+                                </button>
+                            `;
+                        }
+                    }
+                } catch(e) {
+                    console.warn('Error syncing card:', e);
+                }
+            });
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Run sync immediately
+        document.addEventListener('DOMContentLoaded', syncQuizCardsWithStorage);
+        syncQuizCardsWithStorage();
 
         // ── Filter Pills Functionality ──
         function filterQuizzes(category, btn) {

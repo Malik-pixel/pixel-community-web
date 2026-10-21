@@ -1840,6 +1840,10 @@
                     if (typeof savedDraft.totalTimeSeconds === 'number') totalTimeSeconds = savedDraft.totalTimeSeconds;
                     if (typeof savedDraft.secondsElapsed === 'number') secondsElapsed = savedDraft.secondsElapsed;
                 }
+            } else {
+                // Quiz is officially started! Auto-save initial draft so that if user navigates back to /quizzes,
+                // it immediately appears as "IN PROGRESS" and "Resume Quiz"!
+                autoSaveSilent();
             }
         } catch (e) {
             console.warn('LocalStorage error:', e);
@@ -1949,15 +1953,21 @@
             try {
                 const draft = {
                     quizSlug: currentSlug,
+                    quizTitle: currentQuizData.title,
                     currentIdx: currentIdx,
                     userAnswers: userAnswers,
                     totalTimeSeconds: totalTimeSeconds,
                     secondsElapsed: secondsElapsed,
+                    totalQuestions: questionsList.length,
                     updatedAt: new Date().toISOString()
                 };
                 localStorage.setItem('pixel_quiz_draft_' + currentSlug, JSON.stringify(draft));
             } catch (e) {}
         }
+
+        window.addEventListener('beforeunload', () => {
+            autoSaveSilent();
+        });
 
         function saveDraft() {
             autoSaveSilent();
@@ -2034,9 +2044,17 @@
                 msgEl.textContent = "Tetap semangat! Anda dapat mempelajari kembali materi kelas dan mengulang kuis ini kapan saja.";
             }
 
-            // Remove draft now that it's submitted
+            // Remove draft now that it's submitted and save completed state
             try {
                 localStorage.removeItem('pixel_quiz_draft_' + currentSlug);
+                localStorage.setItem('pixel_quiz_completed_' + currentSlug, JSON.stringify({
+                    quizSlug: currentSlug,
+                    quizTitle: currentQuizData.title,
+                    score: scorePercent,
+                    correctCount: correctCount,
+                    totalQuestions: questionsList.length,
+                    completedAt: new Date().toISOString()
+                }));
             } catch(e) {}
 
             // Reset review box visibility
@@ -2108,8 +2126,10 @@
             totalTimeSeconds = currentQuizData.timeLimit || 1200;
             secondsElapsed = 0;
             try {
+                localStorage.removeItem('pixel_quiz_completed_' + currentSlug);
                 localStorage.removeItem('pixel_quiz_draft_' + currentSlug);
             } catch(e) {}
+            autoSaveSilent();
             startCountdown();
             renderCurrentQuestion();
             showToastNotification('Kuis dimulai ulang dari pertanyaan pertama.');

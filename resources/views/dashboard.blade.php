@@ -1595,9 +1595,9 @@
                                 <div class="quiz-icon"><i data-lucide="list-todo" size="20"></i></div>
                                 <div class="quiz-content">
                                     <h3>Kuis UI/UX</h3>
-                                    <p>10 Pertanyaan • 20 Menit</p>
+                                    <p id="dashboardQuizSubtitle">10 Pertanyaan • 20 Menit</p>
                                 </div>
-                                <a href="{{ route('quizzes.take', ['slug' => 'ui-ux']) }}" class="btn-outline-dark" onclick="event.stopPropagation();">Mulai Kuis</a>
+                                <a href="{{ route('quizzes.take', ['slug' => 'ui-ux']) }}" class="btn-outline-dark" id="dashboardQuizActionBtn" onclick="event.stopPropagation();">Mulai Kuis</a>
                             </div>
                             
                             <div class="up-next-card" onclick="window.location.href='{{ route('learn', ['slug' => 'ui-ux']) }}'" style="cursor: pointer;">
@@ -2189,6 +2189,29 @@
                     }
                 });
             }
+
+            // Sync Dashboard Quiz State from LocalStorage
+            try {
+                const dashDraft = localStorage.getItem('pixel_quiz_draft_ui-ux');
+                const dashComp = localStorage.getItem('pixel_quiz_completed_ui-ux');
+                const dashBtn = document.getElementById('dashboardQuizActionBtn');
+                const dashSub = document.getElementById('dashboardQuizSubtitle');
+
+                if (dashBtn && dashDraft) {
+                    const draftData = JSON.parse(dashDraft);
+                    const answered = Object.keys(draftData.userAnswers || {}).length;
+                    dashBtn.textContent = 'Lanjutkan Kuis';
+                    dashBtn.style.backgroundColor = '#a8c7ea';
+                    dashBtn.style.color = '#0f172a';
+                    dashBtn.style.borderColor = '#9bbde3';
+                    dashBtn.style.fontWeight = '700';
+                    if (dashSub) dashSub.textContent = `Sedang Berjalan • ${answered}/10 Soal`;
+                } else if (dashBtn && dashComp) {
+                    const compData = JSON.parse(dashComp);
+                    dashBtn.textContent = 'Lihat Nilai';
+                    if (dashSub) dashSub.textContent = `Selesai • Nilai ${compData.score}%`;
+                }
+            } catch(e) {}
         });
     </script>
 </body>

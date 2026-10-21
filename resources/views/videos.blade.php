@@ -619,17 +619,31 @@
             width: 100%;
             padding: 13px;
             border-radius: 12px;
-            border: none;
+            border: 1px solid transparent;
             background-color: var(--text-dark);
             color: var(--bg-white);
             font-family: var(--font-main);
             font-size: 0.9rem;
             font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s, transform 0.2s;
+            transition: all 0.2s ease;
         }
 
         .btn-continue:hover { background-color: #1e293b; transform: translateY(-1px); }
+
+        .btn-continue.resume,
+        .course-card[data-status="berlangsung"] .btn-continue:not(.outline) {
+            background-color: #a8c7ea;
+            color: #0f172a;
+            border: 1px solid #9bbde3;
+        }
+
+        .btn-continue.resume:hover,
+        .course-card[data-status="berlangsung"] .btn-continue:not(.outline):hover {
+            background-color: #93b9e4;
+            color: #0f172a;
+            transform: translateY(-1px);
+        }
 
         .btn-continue.outline {
             background-color: transparent;
@@ -802,7 +816,7 @@
                                 <div class="progress-fill dark" style="width:65%"></div>
                             </div>
                         </div>
-                        <a href="{{ route('learn', ['slug' => 'ui-ux']) }}" class="btn-continue" style="display:block; text-align:center; text-decoration:none;">Lanjutkan Belajar</a>
+                        <a href="{{ route('learn', ['slug' => 'ui-ux']) }}" class="btn-continue resume" style="display:block; text-align:center; text-decoration:none;">Lanjutkan Belajar</a>
                     </div>
                 </div>
 
@@ -841,7 +855,7 @@
                                 <div class="progress-fill dark" style="width:12%"></div>
                             </div>
                         </div>
-                        <a href="{{ route('learn', ['slug' => 'react']) }}" class="btn-continue" style="display:block; text-align:center; text-decoration:none;">Lanjutkan Belajar</a>
+                        <a href="{{ route('learn', ['slug' => 'react']) }}" class="btn-continue resume" style="display:block; text-align:center; text-decoration:none;">Lanjutkan Belajar</a>
                     </div>
                 </div>
 
